@@ -3,10 +3,18 @@ import {
   IBM_Plex_Sans,
   IBM_Plex_Sans_Arabic,
   IBM_Plex_Mono,
+  Tajawal,
 } from "next/font/google";
 import "./globals.css";
 
 // Weights: 300 captions · 400 body · 500 sub-heads · 600 headlines. Never 700+.
+const tajawal = Tajawal({
+  variable: "--font-tajawal",
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
   subsets: ["latin"],
@@ -66,7 +74,7 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${plexSans.variable} ${plexArabic.variable} ${plexMono.variable} antialiased`}
+      className={`${tajawal.variable} ${plexSans.variable} ${plexArabic.variable} ${plexMono.variable} antialiased`}
     >
       <body className="min-h-dvh bg-background font-sans text-foreground">
         {children}

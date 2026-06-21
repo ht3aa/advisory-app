@@ -33,7 +33,7 @@ export function HeroSection() {
               {site.city} — {site.est}
             </span>
 
-            <h1 className="ips-build ips-build-1 mt-7 text-balance text-display font-semibold">
+            <h1 className="ips-build ips-build-1 mt-7 text-balance text-h1 font-semibold">
               المرجع الفني المستقل
               <br />
               <span className="text-ips-emerald">لصناعة البرمجيات</span> في

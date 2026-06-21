@@ -26,9 +26,9 @@
   --color-ips-green-deep: #073f25; /* derived deep green — heroes, hovers   */
 
   /* Typography — wired to next/font CSS variables (app/layout.tsx) */
-  --font-sans: var(--font-plex-sans), var(--font-plex-arabic), system-ui,
-    sans-serif;
-  --font-arabic: var(--font-plex-arabic), var(--font-plex-sans), sans-serif;
+  --font-sans: var(--font-tajawal), var(--font-plex-arabic), var(--font-plex-sans),
+    system-ui, sans-serif;
+  --font-arabic: var(--font-tajawal), var(--font-plex-arabic), sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 
   /* Fluid type scale (clamp) — Display → Heading → Body → Label */

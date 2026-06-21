@@ -9,6 +9,12 @@ export const site = {
   city: "بغداد · العراق",
   est: "تأسس 2026",
   tagline: "الجهة المهنية للبرمجيات في العراق",
+  findDeveloper: {
+    url: "https://find-developer.iq/",
+    domain: "find-developer.iq",
+    nameAr: "ابحث عن مطوّر",
+    nameEn: "Find Developer",
+  },
 } as const;
 
 export type NavItem = { label: string; href: string };
