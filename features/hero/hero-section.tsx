@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Mark } from "@/components/brand/mark";
 import { HexField } from "@/components/brand/hex-field";
+import { CreateDemoUserButton } from "@/features/hero/create-demo-user-button";
 
 const highlights = [
   "استشارة مستقلة ومحايدة",
@@ -46,7 +47,7 @@ export function HeroSection() {
               والشركات والمؤسسات الأكاديمية.
             </p>
 
-            <div className="ips-build ips-build-3 mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="ips-build ips-build-3 mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button asChild size="lg" variant="accent">
                 <Link href="/request">
                   اطلب استشارة
@@ -61,6 +62,7 @@ export function HeroSection() {
               >
                 <a href="#services">استعرض الخدمات</a>
               </Button>
+              <CreateDemoUserButton />
             </div>
 
             <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
