@@ -1,0 +1,103 @@
+// Advisory Office — Iraqi Programmers Syndicate
+// Prisma schema: staff users, RBAC, and consultant requests.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String  @id @default(cuid())
+  name         String
+  email        String  @unique
+  passwordHash String
+  isActive     Boolean @default(true)
+
+  roles            Role[]              @relation("UserRoles")
+  assignedRequests ConsultantRequest[] @relation("AssignedRequests")
+  responses        RequestResponse[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+}
+
+model Role {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  label       String
+  description String?
+  isSystem    Boolean @default(false)
+
+  users       User[]       @relation("UserRoles")
+  permissions Permission[] @relation("RolePermissions")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Permission {
+  id    String @id @default(cuid())
+  name  String @unique
+  label String
+  group String
+
+  roles Role[] @relation("RolePermissions")
+
+  createdAt DateTime @default(now())
+
+  @@index([group])
+}
+
+enum RequestStatus {
+  NEW
+  IN_REVIEW
+  ANSWERED
+  CLOSED
+}
+
+model ConsultantRequest {
+  id           String        @id @default(cuid())
+  referenceNo  String        @unique
+  fullName     String
+  email        String
+  phone        String?
+  organization String?
+  serviceKey   String?
+  subject      String
+  message      String
+  status       RequestStatus @default(NEW)
+
+  assignedToId String?
+  assignedTo   User?   @relation("AssignedRequests", fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  responses RequestResponse[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([assignedToId])
+  @@index([createdAt])
+}
+
+model RequestResponse {
+  id        String            @id @default(cuid())
+  requestId String
+  request   ConsultantRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  authorId String?
+  author   User?   @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  body      String
+  emailedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([requestId])
+}

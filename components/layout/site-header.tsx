@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Menu } from "lucide-react";
+import Link from "next/link";
+import { LogIn, Menu } from "lucide-react";
 
 import { navItems, site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
@@ -38,8 +39,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          <Button asChild variant="outline">
+            <Link href="/login">
+              <LogIn className="size-4" />
+              تسجيل الدخول
+            </Link>
+          </Button>
           <Button asChild>
-            <a href="#contact">اطلب استشارة</a>
+            <Link href="/request">اطلب استشارة</Link>
           </Button>
         </div>
 
@@ -72,10 +79,18 @@ export function SiteHeader() {
                 </SheetClose>
               ))}
             </nav>
-            <div className="mt-auto p-4">
+            <div className="mt-auto flex flex-col gap-2 p-4">
               <SheetClose asChild>
                 <Button asChild className="w-full" size="lg">
-                  <a href="#contact">اطلب استشارة</a>
+                  <Link href="/request">اطلب استشارة</Link>
+                </Button>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button asChild variant="outline" className="w-full" size="lg">
+                  <Link href="/login">
+                    <LogIn className="size-4" />
+                    تسجيل الدخول
+                  </Link>
                 </Button>
               </SheetClose>
             </div>

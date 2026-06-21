@@ -47,6 +47,15 @@
   --border: #e3e8e5;
   --input: #dde3df;
   --ring: #0a5c36;
+
+  /* Admin sidebar (dark, Filament-style — constant across themes) */
+  --sidebar: #0b0f0d;
+  --sidebar-foreground: #f4f6f5;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-accent: rgba(255, 255, 255, 0.06);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-primary: #18c07a;
+  --sidebar-primary-foreground: #06281a;
 }
 
 .dark {
@@ -99,6 +108,14 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
 
   --color-brand-emerald: var(--brand-emerald);
   --color-brand-emerald-deep: var(--brand-emerald-deep);

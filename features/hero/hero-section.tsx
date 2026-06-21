@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowLeft, ChevronDown, ShieldCheck } from "lucide-react";
 
 import { site } from "@/lib/site";
@@ -51,10 +52,10 @@ export function HeroSection() {
                 size="lg"
                 className="bg-brand-bright text-brand-emerald-deep hover:bg-white"
               >
-                <a href="#contact">
+                <Link href="/request">
                   اطلب استشارة
                   <ArrowLeft className="size-4" />
-                </a>
+                </Link>
               </Button>
               <Button
                 asChild

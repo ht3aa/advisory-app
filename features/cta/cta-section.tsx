@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowLeft, Mail, Phone } from "lucide-react";
 
 import { site } from "@/lib/site";
@@ -32,10 +33,10 @@ export function CtaSection() {
                   size="lg"
                   className="bg-brand-bright text-brand-emerald-deep hover:bg-white"
                 >
-                  <a href={`mailto:${site.email}`}>
+                  <Link href="/request">
                     اطلب استشارة
                     <ArrowLeft className="size-4" />
-                  </a>
+                  </Link>
                 </Button>
                 <Button
                   asChild
