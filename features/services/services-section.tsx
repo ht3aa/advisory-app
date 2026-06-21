@@ -23,16 +23,16 @@ export function ServicesSection() {
               >
                 <span
                   aria-hidden
-                  className="label-mono absolute left-7 top-7 text-muted-foreground/50"
+                  className="label-mono absolute top-7 end-7 text-muted-foreground/50"
                 >
                   {service.no}
                 </span>
 
                 <div
                   className={cn(
-                    "flex size-12 items-center justify-center rounded-md",
-                    "bg-primary/10 text-primary transition-colors",
-                    "group-hover:bg-primary group-hover:text-primary-foreground"
+                    "flex size-12 items-center justify-center rounded-[var(--radius-ips)]",
+                    "bg-ips-green/8 text-ips-green transition-colors duration-150 ease-ips",
+                    "group-hover:bg-ips-green group-hover:text-ips-white"
                   )}
                 >
                   <Icon className="size-6" />
@@ -45,13 +45,13 @@ export function ServicesSection() {
                   {service.description}
                 </p>
 
-                <span className="label-mono mt-5 text-primary/70">
+                <span className="label-mono mt-5 text-ips-green/70">
                   {service.labelEn}
                 </span>
 
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-0.5 origin-right scale-x-0 bg-brand-bright transition-transform duration-300 group-hover:scale-x-100"
+                  className="absolute inset-x-0 bottom-0 h-0.5 scale-x-0 bg-ips-emerald transition-transform duration-300 ease-ips group-hover:scale-x-100 ltr:origin-left rtl:origin-right"
                 />
               </Card>
             );

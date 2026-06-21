@@ -57,9 +57,9 @@ export function AboutSection() {
               return (
                 <div
                   key={v.title}
-                  className="rounded-lg border bg-card p-6 shadow-xs"
+                  className="rounded-[var(--radius-ips)] border bg-card p-6 transition-colors duration-150 ease-ips hover:border-ips-green/30"
                 >
-                  <div className="flex size-11 items-center justify-center rounded-md bg-primary/10 text-primary">
+                  <div className="flex size-11 items-center justify-center rounded-[var(--radius-ips)] bg-ips-green/8 text-ips-green">
                     <Icon className="size-5" />
                   </div>
                   <h3 className="mt-4 font-semibold text-foreground">
@@ -81,10 +81,8 @@ export function AboutSection() {
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <dt className="text-3xl font-bold tracking-tight text-primary">
-        {value}
-      </dt>
-      <dd className="mt-1 text-sm text-muted-foreground">{label}</dd>
+      <dt className="numeral text-4xl leading-none text-ips-green">{value}</dt>
+      <dd className="mt-2 text-sm text-muted-foreground">{label}</dd>
     </div>
   );
 }

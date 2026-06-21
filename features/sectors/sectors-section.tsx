@@ -59,9 +59,9 @@ export function SectorsSection() {
             return (
               <div
                 key={s.title}
-                className="group flex items-start gap-4 rounded-lg border bg-card p-6 shadow-xs transition-shadow hover:shadow-md"
+                className="group flex items-start gap-4 rounded-[var(--radius-ips)] border border-border bg-card p-6 transition-colors duration-150 ease-ips hover:border-ips-green/30 hover:bg-ips-green/[0.03]"
               >
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-ips)] bg-ips-green/8 text-ips-green transition-colors duration-150 ease-ips group-hover:bg-ips-green group-hover:text-ips-white">
                   <Icon className="size-5" />
                 </div>
                 <div>

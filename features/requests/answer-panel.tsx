@@ -151,7 +151,7 @@ export function AnswerPanel({
                     {r.body}
                   </p>
                   {r.emailedAt && (
-                    <p className="mt-2 flex items-center gap-1.5 text-xs text-emerald-600">
+                    <p className="mt-2 flex items-center gap-1.5 text-xs text-ips-green">
                       <MailCheck className="size-3.5" />
                       أُرسل عبر البريد · {r.emailedAt}
                     </p>

@@ -24,12 +24,12 @@ export function SubmitForm({ defaultServiceKey }: { defaultServiceKey?: string }
 
   if (state?.referenceNo) {
     return (
-      <div className="flex flex-col items-center gap-5 rounded-xl border border-border bg-card p-10 text-center">
-        <div className="flex size-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+      <div className="flex flex-col items-center gap-5 rounded-[var(--radius-lg)] border border-border bg-card p-10 text-center">
+        <div className="flex size-14 items-center justify-center rounded-full bg-ips-green/10 text-ips-green">
           <CheckCircle2 className="size-8" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground">
+          <h2 className="text-xl font-semibold text-foreground">
             تم استلام طلبك بنجاح
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -50,7 +50,7 @@ export function SubmitForm({ defaultServiceKey }: { defaultServiceKey?: string }
   return (
     <form
       action={action}
-      className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 sm:p-8"
+      className="flex flex-col gap-5 rounded-[var(--radius-lg)] border border-border bg-card p-6 sm:p-8"
     >
       {state?.error && (
         <p
@@ -100,7 +100,7 @@ export function SubmitForm({ defaultServiceKey }: { defaultServiceKey?: string }
           id="serviceKey"
           name="serviceKey"
           defaultValue={defaultServiceKey ?? ""}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/30"
+          className="flex h-10 w-full rounded-[var(--radius-ips)] border border-input bg-background px-3 text-sm transition-[color,border-color,box-shadow] duration-150 ease-ips outline-none hover:border-ips-gray/60 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35"
         >
           <option value="">— اختر الخدمة —</option>
           {services.map((s) => (

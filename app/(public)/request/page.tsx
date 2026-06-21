@@ -43,7 +43,7 @@ export default async function RequestPage({
             <span className="label-mono flex items-center gap-2 text-primary">
               <span aria-hidden>/</span> طلب استشارة
             </span>
-            <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h1 className="mt-3 text-h2 text-foreground">
               أرسل طلبك للمكتب الاستشاري
             </h1>
             <p className="mt-3 max-w-xl text-muted-foreground">

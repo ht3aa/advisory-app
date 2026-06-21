@@ -5,25 +5,35 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:border-ring",
+  [
+    "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-ips)] text-sm font-medium",
+    "transition-all duration-150 ease-ips outline-none select-none",
+    "disabled:pointer-events-none disabled:opacity-50",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+    "focus-visible:ring-[3px] focus-visible:ring-ring/45 focus-visible:border-ring",
+    "active:translate-y-px",
+  ],
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-brand-emerald-deep",
+        // Institutional primary — green, white label
+        default: "bg-primary text-primary-foreground hover:bg-ips-green-deep",
+        // The scalpel — single emerald CTA, ink label (AA on emerald)
+        accent: "bg-ips-emerald text-ips-green-deep hover:bg-ips-emerald/90",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        // Secondary — green outline
         outline:
-          "border bg-background shadow-xs hover:bg-secondary hover:text-secondary-foreground",
+          "border border-ips-green/30 bg-transparent text-primary hover:bg-ips-green/5 hover:border-ips-green/50",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost: "hover:bg-secondary hover:text-secondary-foreground",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/70",
+        ghost: "text-foreground hover:bg-secondary",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-5 has-[>svg]:px-4",
-        sm: "h-9 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-12 rounded-md px-7 text-base has-[>svg]:px-5",
+        sm: "h-9 gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-12 px-7 text-base has-[>svg]:px-5",
         icon: "size-10",
       },
     },

@@ -75,9 +75,7 @@ export function getUserColumns(opts: {
       header: "الحالة",
       cell: ({ row }) =>
         row.original.isActive ? (
-          <Badge className="border-emerald-200 bg-emerald-50 text-emerald-700">
-            مفعّل
-          </Badge>
+          <Badge variant="accent">مفعّل</Badge>
         ) : (
           <Badge variant="outline" className="text-muted-foreground">
             معطّل

@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
+import { Mark } from "@/components/brand/mark";
 
 /**
- * The Resolved Mark — Advisory Office.
- * Construction: hexagon (round-city chevron field) + 60° slash (the code "/").
- * Aspect ratio locked 1:1.
+ * Back-compat wrapper around <Mark>. Existing call sites pass color via
+ * className (e.g. text-primary / text-ips-emerald), so we use the `mono`
+ * tone and let the caller drive currentColor.
  */
 export function LogoMark({
   className,
@@ -12,28 +13,7 @@ export function LogoMark({
   className?: string;
   title?: string;
 }) {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      role="img"
-      aria-label={title}
-      className={cn("size-8", className)}
-      fill="none"
-    >
-      <path
-        d="M32 3.5 L56.7 17.75 V46.25 L32 60.5 L7.3 46.25 V17.75 Z"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M39 20 L25 44"
-        stroke="currentColor"
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <Mark variant="mono" className={cn("size-8", className)} title={title} />;
 }
 
 export function Wordmark({
@@ -48,7 +28,7 @@ export function Wordmark({
       <LogoMark className="size-9 text-primary" />
       {!compact && (
         <span className="flex flex-col leading-none">
-          <span className="text-[15px] font-bold tracking-tight text-foreground">
+          <span className="text-[15px] font-semibold tracking-tight text-foreground">
             المكتب الاستشاري
           </span>
           <span className="label-mono mt-1 text-muted-foreground">

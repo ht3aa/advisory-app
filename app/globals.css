@@ -5,21 +5,95 @@
 
 /*
   Advisory Office — Iraqi Programmers Syndicate
-  Brand Identity System v1.0
-  Palette: Emerald 0A5C36 · Ink 0B0F0D · White FFFFFF · Bright 18C07A
+  Brand Identity System v2.0
+
+  Composition discipline: ~60% white/space · 25% green · 10% ink · 5% emerald.
+  Emerald is a scalpel — the single primary action + focus rings only.
+  Green is the dark institutional surface. Tints come from color-mix, not new hex.
 */
 
+/* ───────────────────────────────────────────────────────────────────────────
+   Brand palette · type · shape · motion  →  generate utilities + emit vars
+   ──────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Canonical brand palette → bg-/text-/border-ips-* */
+  --color-ips-green: #0a5c36; /* Deep Iraqi Green — institutional surface   */
+  --color-ips-emerald: #18c07a; /* Digital Emerald — accent / CTA / focus ONLY */
+  --color-ips-ink: #0b0f0d; /* Ink Black                                  */
+  --color-ips-white: #ffffff;
+  --color-ips-silver: #c7cfca; /* borders, dividers                          */
+  --color-ips-gray: #8c968f; /* muted text, captions                       */
+  --color-ips-green-deep: #073f25; /* derived deep green — heroes, hovers   */
+
+  /* Typography — wired to next/font CSS variables (app/layout.tsx) */
+  --font-sans: var(--font-plex-sans), var(--font-plex-arabic), system-ui,
+    sans-serif;
+  --font-arabic: var(--font-plex-arabic), var(--font-plex-sans), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Fluid type scale (clamp) — Display → Heading → Body → Label */
+  --text-display: clamp(2.5rem, 1rem + 7vw, 5.25rem);
+  --text-display--line-height: 1.03;
+  --text-display--letter-spacing: -0.022em;
+  --text-display--font-weight: 600;
+
+  --text-h1: clamp(2rem, 1.1rem + 4vw, 3.25rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 600;
+
+  --text-h2: clamp(1.6rem, 1rem + 2.4vw, 2.625rem);
+  --text-h2--line-height: 1.13;
+  --text-h2--letter-spacing: -0.018em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 500;
+
+  --text-lead: clamp(1.0625rem, 0.95rem + 0.6vw, 1.1875rem); /* ~19px body */
+  --text-lead--line-height: 1.7;
+
+  /* Shape — anchored on 6px */
+  --radius: 0.375rem;
+  --radius-ips: 0.375rem; /* 6px — brand corner radius */
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 14px);
+
+  /* Motion — one confident curve, settle never bounce */
+  --ease-ips: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-micro: 150ms;
+  --duration-settle: 1200ms;
+
+  --animate-accordion-down: accordion-down 0.22s var(--ease-ips);
+  --animate-accordion-up: accordion-up 0.22s var(--ease-ips);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Semantic tokens (shadcn bridge) — light surface
+   ──────────────────────────────────────────────────────────────────────── */
 :root {
-  --radius: 0.375rem; /* 6px brand corner radius */
-
-  /* Brand raw tokens */
-  --brand-emerald: #0a5c36;
-  --brand-emerald-deep: #073f25;
-  --brand-ink: #0b0f0d;
-  --brand-bright: #18c07a;
-  --brand-mist: #c7cfca;
-  --brand-stone: #8c968f;
-
   --background: #ffffff;
   --foreground: #0b0f0d;
 
@@ -29,7 +103,7 @@
   --popover: #ffffff;
   --popover-foreground: #0b0f0d;
 
-  --primary: #0a5c36;
+  --primary: #0a5c36; /* green */
   --primary-foreground: #ffffff;
 
   --secondary: #f1f5f2;
@@ -38,7 +112,7 @@
   --muted: #f4f6f5;
   --muted-foreground: #5b655e;
 
-  --accent: #18c07a;
+  --accent: #18c07a; /* emerald */
   --accent-foreground: #06281a;
 
   --destructive: #b3261e;
@@ -46,13 +120,13 @@
 
   --border: #e3e8e5;
   --input: #dde3df;
-  --ring: #0a5c36;
+  --ring: #18c07a; /* emerald focus */
 
-  /* Admin sidebar (dark, Filament-style — constant across themes) */
+  /* Admin sidebar (dark, constant across themes) */
   --sidebar: #0b0f0d;
   --sidebar-foreground: #f4f6f5;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-accent: rgba(255, 255, 255, 0.06);
+  --sidebar-border: color-mix(in oklab, #ffffff 9%, transparent);
+  --sidebar-accent: color-mix(in oklab, #ffffff 6%, transparent);
   --sidebar-accent-foreground: #ffffff;
   --sidebar-primary: #18c07a;
   --sidebar-primary-foreground: #06281a;
@@ -83,11 +157,14 @@
   --destructive: #ff6b61;
   --destructive-foreground: #0b0f0d;
 
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.14);
+  --border: color-mix(in oklab, #ffffff 10%, transparent);
+  --input: color-mix(in oklab, #ffffff 14%, transparent);
   --ring: #18c07a;
 }
 
+/* ───────────────────────────────────────────────────────────────────────────
+   Map semantic + legacy brand tokens → utilities
+   ──────────────────────────────────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -117,42 +194,18 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
 
-  --color-brand-emerald: var(--brand-emerald);
-  --color-brand-emerald-deep: var(--brand-emerald-deep);
-  --color-brand-ink: var(--brand-ink);
-  --color-brand-bright: var(--brand-bright);
-  --color-brand-mist: var(--brand-mist);
-  --color-brand-stone: var(--brand-stone);
-
-  --font-sans: var(--font-plex-arabic);
-  --font-mono: var(--font-plex-mono);
-
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 4px);
-  --radius-xl: calc(var(--radius) + 8px);
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
+  /* Legacy brand-* aliases → keep existing utilities working */
+  --color-brand-emerald: var(--color-ips-green);
+  --color-brand-emerald-deep: var(--color-ips-green-deep);
+  --color-brand-ink: var(--color-ips-ink);
+  --color-brand-bright: var(--color-ips-emerald);
+  --color-brand-mist: var(--color-ips-silver);
+  --color-brand-stone: var(--color-ips-gray);
 }
 
+/* ───────────────────────────────────────────────────────────────────────────
+   Base
+   ──────────────────────────────────────────────────────────────────────── */
 @layer base {
   * {
     border-color: var(--border);
@@ -161,6 +214,8 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -170,32 +225,111 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Accessible, universal emerald focus state */
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px
+      color-mix(in oklch, var(--color-ips-emerald) 45%, transparent);
+  }
+
   ::selection {
-    background-color: color-mix(in oklab, var(--brand-bright) 28%, transparent);
-    color: var(--brand-ink);
+    background-color: color-mix(
+      in oklab,
+      var(--color-ips-emerald) 26%,
+      transparent
+    );
+    color: var(--color-ips-ink);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Motion — one curve (--ease-ips), settle never bounce
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Route-change view transitions (experimental.viewTransition) — quick crossfade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 240ms;
+  animation-timing-function: var(--ease-ips);
+}
+
+/* Hero is a shared element on the landing route — let it settle, not snap */
+::view-transition-group(ips-hero) {
+  animation-duration: 600ms;
+  animation-timing-function: var(--ease-ips);
+}
+
+/* One-time brand "build" on first paint (mark + hero copy) */
+@keyframes ips-build {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @layer utilities {
-  /* Hexagonal network motif — brand primary pattern */
-  .bg-hex {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z'/%3E%3Cpath d='M28 66 L56 82 L56 116 L28 132 L0 116 L0 82 Z'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 56px 100px;
+  .ips-build {
+    animation: ips-build var(--duration-settle) var(--ease-ips) both;
+  }
+  .ips-build-1 {
+    animation-delay: 80ms;
+  }
+  .ips-build-2 {
+    animation-delay: 160ms;
+  }
+  .ips-build-3 {
+    animation-delay: 240ms;
+  }
+}
+
+/* Honor reduced-motion globally — degrade transitions + view transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 
-  .bg-hex-ink {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%230a5c36' stroke-width='1'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z'/%3E%3Cpath d='M28 66 L56 82 L56 116 L28 132 L0 116 L0 82 Z'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 56px 100px;
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
+}
 
-  .text-balance {
-    text-wrap: balance;
-  }
-
+/* ───────────────────────────────────────────────────────────────────────────
+   Brand utilities
+   ──────────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Uppercase mono micro-label — brand signature for labels/eyebrows */
   .label-mono {
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-size: 0.6875rem;
+    line-height: 1;
+  }
+
+  /* Tabular mono numerals — the mono-for-data habit (metrics, IDs, counts) */
+  .numeral {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    letter-spacing: -0.01em;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
   }
 }

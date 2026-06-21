@@ -39,13 +39,13 @@ export function ProcessSection() {
           {steps.map((step, i) => (
             <li key={step.no} className="relative">
               <div className="flex items-center gap-4">
-                <span className="flex size-12 items-center justify-center rounded-md bg-primary font-mono text-base font-semibold text-primary-foreground">
+                <span className="numeral flex size-12 items-center justify-center rounded-[var(--radius-ips)] bg-ips-green text-base font-medium text-ips-white">
                   {step.no}
                 </span>
                 {i < steps.length - 1 && (
                   <span
                     aria-hidden
-                    className="hidden h-px flex-1 bg-gradient-to-l from-border to-transparent lg:block"
+                    className="hidden h-px flex-1 bg-linear-to-l from-border to-transparent lg:block"
                   />
                 )}
               </div>

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { hasPermission } from "@/lib/rbac";
-import { LogoMark } from "@/components/brand/logo";
+import { Mark } from "@/components/brand/mark";
 import { ADMIN_NAV } from "./nav-items";
 
 export function AppSidebar({
@@ -27,9 +27,9 @@ export function AppSidebar({
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-16 items-center gap-2.5 border-b border-sidebar-border px-5">
-        <LogoMark className="size-7 text-brand-bright" />
+        <Mark variant="mono" decorative className="size-7 text-ips-emerald" />
         <div className="flex flex-col leading-tight">
-          <span className="text-sm font-bold text-sidebar-foreground">
+          <span className="text-sm font-semibold text-sidebar-foreground">
             بوابة المكتب
           </span>
           <span className="label-mono text-[10px] text-sidebar-foreground/50">

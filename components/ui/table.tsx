@@ -7,7 +7,11 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     <div data-slot="table-container" className="relative w-full overflow-x-auto">
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn(
+          "w-full caption-bottom text-sm",
+          "[&_tbody_tr:nth-child(even)]:bg-ips-silver/[0.045]",
+          className
+        )}
         {...props}
       />
     </div>
@@ -39,7 +43,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
     <tr
       data-slot="table-row"
       className={cn(
-        "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+        "border-b border-border/60 transition-colors duration-150 ease-ips hover:bg-ips-green/[0.04] data-[state=selected]:bg-ips-green/[0.06]",
         className
       )}
       {...props}
