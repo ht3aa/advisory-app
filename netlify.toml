@@ -1,0 +1,19 @@
+# Netlify — Next.js (App Router) + Prisma
+#
+# Set in Netlify UI → Site configuration → Environment variables:
+#   DATABASE_URL      — database connection string
+#   AUTH_SECRET       — NextAuth secret
+#   AUTH_URL          — e.g. https://your-site.netlify.app
+# Optional seed overrides:
+#   SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD, SEED_ADMIN_NAME
+
+[build]
+  command = "npm run build:netlify"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Keep devDependencies (tsx) available for `prisma db seed` during build
+  NPM_CONFIG_PRODUCTION = "false"
