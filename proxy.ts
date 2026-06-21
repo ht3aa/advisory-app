@@ -1,12 +1,18 @@
+import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 
-import { auth } from "@/lib/auth";
+import authConfig from "@/lib/auth.config";
 
 /**
  * Optimistic auth gate (Next.js 16 "proxy", formerly middleware).
  * Only reads the JWT cookie — secure permission checks happen in the
  * Data Access Layer (lib/dal.ts) on every server action / page.
+ *
+ * Uses the edge-safe base config (no Prisma/bcrypt) so the middleware bundle
+ * stays edge-compatible and deploys cleanly on the Netlify adapter.
  */
+const { auth } = NextAuth(authConfig);
+
 export default auth((req) => {
   const { pathname } = req.nextUrl;
   const isLoggedIn = !!req.auth;

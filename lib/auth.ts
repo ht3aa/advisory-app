@@ -4,16 +4,16 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
+import authConfig from "@/lib/auth.config";
 
 const credentialsSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1),
 });
 
+// Full server instance: edge-safe base config + the DB-backed provider.
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  session: { strategy: "jwt" },
-  pages: { signIn: "/login" },
-  trustHost: true,
+  ...authConfig,
   providers: [
     Credentials({
       credentials: {
@@ -45,20 +45,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    jwt: ({ token, user }) => {
-      if (user) {
-        token.uid = user.id as string;
-        token.roles = user.roles ?? [];
-      }
-      return token;
-    },
-    session: ({ session, token }) => {
-      if (session.user) {
-        session.user.id = (token.uid as string) ?? "";
-        session.user.roles = (token.roles as string[]) ?? [];
-      }
-      return session;
-    },
-  },
 });
