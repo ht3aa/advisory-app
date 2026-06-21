@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -54,13 +54,9 @@ model Permission {
   @@index([group])
 }
 
-enum RequestStatus {
-  NEW
-  IN_REVIEW
-  ANSWERED
-  CLOSED
-}
-
+// Status values: NEW | IN_REVIEW | ANSWERED | CLOSED. Stored as String because
+// SQLite has no native enum type; validated in app code via REQUEST_STATUSES
+// (features/requests/schema.ts).
 model ConsultantRequest {
   id           String        @id @default(cuid())
   referenceNo  String        @unique
@@ -71,7 +67,7 @@ model ConsultantRequest {
   serviceKey   String?
   subject      String
   message      String
-  status       RequestStatus @default(NEW)
+  status       String        @default("NEW")
 
   assignedToId String?
   assignedTo   User?   @relation("AssignedRequests", fields: [assignedToId], references: [id], onDelete: SetNull)

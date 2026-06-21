@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { RequestStatus } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import { requirePermission } from "@/lib/dal";
@@ -120,7 +119,7 @@ export async function updateStatusAction(
 
   await prisma.consultantRequest.update({
     where: { id },
-    data: { status: status as RequestStatus },
+    data: { status },
   });
 
   revalidatePath(`/admin/requests/${id}`);

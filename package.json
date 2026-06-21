@@ -8,10 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:setup": "prisma db push && prisma db seed",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma db push --force-reset --accept-data-loss && prisma db seed"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
