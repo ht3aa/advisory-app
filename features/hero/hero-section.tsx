@@ -3,9 +3,9 @@ import { ArrowLeft, ChevronDown, ShieldCheck } from "lucide-react";
 
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
-import { Mark } from "@/components/brand/mark";
 import { HexField } from "@/components/brand/hex-field";
 import { HeroTypewriter } from "@/features/hero/hero-typewriter";
+import { HeroMark3D } from "@/features/hero/hero-mark-3d";
 
 const highlights = [
   "استشارة مستقلة ومحايدة",
@@ -74,33 +74,8 @@ export function HeroSection() {
 
           {/* Brand mark composition */}
           <div className="relative hidden lg:block">
-            <div className="ips-build ips-build-2 hero-mark-glow relative mx-auto aspect-square w-full max-w-md">
-              <div className="absolute inset-0 rounded-[var(--radius-xl)] border bg-ips-white/[0.03]" />
-              <div
-                aria-hidden
-                className="hero-mark-glow__sheen pointer-events-none absolute inset-0 rounded-[var(--radius-xl)]"
-              />
-              <HexField className="rounded-[var(--radius-xl)]" opacity={0.07} />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div
-                  aria-hidden
-                  className="hero-mark-glow__halo pointer-events-none absolute size-56 rounded-full blur-2xl"
-                />
-                <Mark
-                  variant="white"
-                  decorative
-                  className="hero-mark-glow__mark relative size-48"
-                />
-              </div>
-              <div className="absolute inset-x-5 bottom-5 flex items-center justify-between">
-                <span className="label-mono text-ips-white/55">
-                  {site.domain}
-                </span>
-                <span className="label-mono text-ips-white/55">EST · 2026</span>
-              </div>
-              <div className="absolute end-5 top-5 font-mono text-xs text-ips-white/40">
-                {"</>"}
-              </div>
+            <div className="ips-build ips-build-2 relative mx-auto aspect-square w-full max-w-md">
+              <HeroMark3D />
             </div>
           </div>
         </div>

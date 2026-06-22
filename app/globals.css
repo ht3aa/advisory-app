@@ -389,9 +389,10 @@
   .hero-mark-glow__halo {
     background: radial-gradient(
       circle,
-      color-mix(in oklab, var(--color-ips-emerald) 30%, transparent) 0%,
+      color-mix(in oklab, var(--color-ips-emerald) 16%, transparent) 0%,
       transparent 70%
     );
+    opacity: 0.6;
     animation: hero-light-orbit 9s ease-in-out infinite;
     will-change: transform, opacity;
   }
