@@ -5,6 +5,7 @@ import {
   IBM_Plex_Mono,
   Tajawal,
 } from "next/font/google";
+import { AiAssistantGate } from "@/features/ai-assistant/ai-assistant";
 import "./globals.css";
 
 // Weights: 300 captions · 400 body · 500 sub-heads · 600 headlines. Never 700+.
@@ -78,6 +79,7 @@ export default function RootLayout({
     >
       <body className="min-h-dvh bg-background font-sans text-foreground">
         {children}
+        <AiAssistantGate />
       </body>
     </html>
   );
