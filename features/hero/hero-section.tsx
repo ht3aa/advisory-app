@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Mark } from "@/components/brand/mark";
 import { HexField } from "@/components/brand/hex-field";
+import { HeroTypewriter } from "@/features/hero/hero-typewriter";
 
 const highlights = [
   "استشارة مستقلة ومحايدة",
@@ -33,12 +34,7 @@ export function HeroSection() {
               {site.city} — {site.est}
             </span>
 
-            <h1 className="ips-build ips-build-1 mt-7 text-balance text-h1 font-semibold">
-              المرجع الفني المستقل
-              <br />
-              <span className="text-ips-emerald">لصناعة البرمجيات</span> في
-              العراق
-            </h1>
+            <HeroTypewriter />
 
             <p className="ips-build ips-build-2 mt-6 max-w-xl text-balance text-lead text-ips-white/75">
               المكتب الاستشاري التابع لنقابة المبرمجين العراقيين — نقدّم
@@ -78,11 +74,23 @@ export function HeroSection() {
 
           {/* Brand mark composition */}
           <div className="relative hidden lg:block">
-            <div className="ips-build ips-build-2 relative mx-auto aspect-square w-full max-w-md">
-              <div className="absolute inset-0 rounded-[var(--radius-xl)] border border-ips-white/10 bg-ips-white/[0.03]" />
+            <div className="ips-build ips-build-2 hero-mark-glow relative mx-auto aspect-square w-full max-w-md">
+              <div className="absolute inset-0 rounded-[var(--radius-xl)] border bg-ips-white/[0.03]" />
+              <div
+                aria-hidden
+                className="hero-mark-glow__sheen pointer-events-none absolute inset-0 rounded-[var(--radius-xl)]"
+              />
               <HexField className="rounded-[var(--radius-xl)]" opacity={0.07} />
               <div className="absolute inset-0 flex items-center justify-center">
-                <Mark variant="white" decorative className="size-48" />
+                <div
+                  aria-hidden
+                  className="hero-mark-glow__halo pointer-events-none absolute size-56 rounded-full blur-2xl"
+                />
+                <Mark
+                  variant="white"
+                  decorative
+                  className="hero-mark-glow__mark relative size-48"
+                />
               </div>
               <div className="absolute inset-x-5 bottom-5 flex items-center justify-between">
                 <span className="label-mono text-ips-white/55">

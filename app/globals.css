@@ -271,6 +271,94 @@
   }
 }
 
+@keyframes hero-cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Light source drifting in a slow ellipse around the mark */
+@keyframes hero-light-orbit {
+  0% {
+    transform: translate(-15%, -11%);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translate(13%, -7%);
+    opacity: 0.64;
+  }
+  50% {
+    transform: translate(15%, 11%);
+    opacity: 0.48;
+  }
+  75% {
+    transform: translate(-9%, 9%);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-15%, -11%);
+    opacity: 0.4;
+  }
+}
+
+/* Mark shading — cast shadow swings opposite the moving light + emerald bloom */
+@keyframes hero-mark-shade {
+  0% {
+    filter: drop-shadow(9px 7px 12px rgba(2, 16, 11, 0.55))
+      drop-shadow(0 0 7px color-mix(in oklab, var(--color-ips-emerald) 42%, transparent))
+      drop-shadow(0 0 20px color-mix(in oklab, var(--color-ips-emerald) 18%, transparent));
+  }
+  25% {
+    filter: drop-shadow(-8px 7px 12px rgba(2, 16, 11, 0.55))
+      drop-shadow(0 0 9px color-mix(in oklab, var(--color-ips-emerald) 50%, transparent))
+      drop-shadow(0 0 22px color-mix(in oklab, var(--color-ips-emerald) 22%, transparent));
+  }
+  50% {
+    filter: drop-shadow(-9px -7px 12px rgba(2, 16, 11, 0.55))
+      drop-shadow(0 0 7px color-mix(in oklab, var(--color-ips-emerald) 42%, transparent))
+      drop-shadow(0 0 20px color-mix(in oklab, var(--color-ips-emerald) 18%, transparent));
+  }
+  75% {
+    filter: drop-shadow(8px -7px 12px rgba(2, 16, 11, 0.55))
+      drop-shadow(0 0 9px color-mix(in oklab, var(--color-ips-emerald) 50%, transparent))
+      drop-shadow(0 0 22px color-mix(in oklab, var(--color-ips-emerald) 22%, transparent));
+  }
+  100% {
+    filter: drop-shadow(9px 7px 12px rgba(2, 16, 11, 0.55))
+      drop-shadow(0 0 7px color-mix(in oklab, var(--color-ips-emerald) 42%, transparent))
+      drop-shadow(0 0 20px color-mix(in oklab, var(--color-ips-emerald) 18%, transparent));
+  }
+}
+
+/* Surface sheen — a lit highlight that tracks the moving light across the card */
+@keyframes hero-card-sheen {
+  0% {
+    background-position: 18% 14%;
+    opacity: 0.5;
+  }
+  25% {
+    background-position: 82% 22%;
+    opacity: 0.7;
+  }
+  50% {
+    background-position: 84% 80%;
+    opacity: 0.55;
+  }
+  75% {
+    background-position: 24% 78%;
+    opacity: 0.66;
+  }
+  100% {
+    background-position: 18% 14%;
+    opacity: 0.5;
+  }
+}
+
 @layer utilities {
   .ips-build {
     animation: ips-build var(--duration-settle) var(--ease-ips) both;
@@ -283,6 +371,45 @@
   }
   .ips-build-3 {
     animation-delay: 240ms;
+  }
+
+  .hero-typewriter-cursor {
+    animation: hero-cursor-blink 1s linear infinite;
+  }
+
+  /* Hero mark card — soft emerald neon halo */
+  .hero-mark-glow {
+    border-color: color-mix(in oklab, var(--color-ips-emerald) 22%, transparent);
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--color-ips-emerald) 14%, transparent),
+      0 0 48px color-mix(in oklab, var(--color-ips-emerald) 8%, transparent),
+      inset 0 0 32px color-mix(in oklab, var(--color-ips-emerald) 5%, transparent);
+  }
+
+  .hero-mark-glow__halo {
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-ips-emerald) 30%, transparent) 0%,
+      transparent 70%
+    );
+    animation: hero-light-orbit 9s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .hero-mark-glow__sheen {
+    background: radial-gradient(
+      circle at center,
+      color-mix(in oklab, var(--color-ips-emerald) 16%, transparent) 0%,
+      transparent 45%
+    );
+    background-size: 220% 220%;
+    animation: hero-card-sheen 9s ease-in-out infinite;
+    will-change: background-position, opacity;
+  }
+
+  .hero-mark-glow__mark {
+    animation: hero-mark-shade 9s ease-in-out infinite;
+    will-change: filter;
   }
 }
 
