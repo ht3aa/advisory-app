@@ -3,6 +3,7 @@ import { ArrowLeft, UserSearch } from "lucide-react";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/motion/reveal";
 
 export function FindDeveloperSection() {
   const { findDeveloper } = site;
@@ -10,7 +11,7 @@ export function FindDeveloperSection() {
   return (
     <section id="find-developer" className="scroll-mt-20 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="flex flex-col gap-8 rounded-[var(--radius-lg)] border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-8 lg:p-10">
+        <Reveal className="flex flex-col gap-8 rounded-[var(--radius-lg)] border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-8 lg:p-10">
           <div className="flex max-w-2xl flex-col gap-5">
             <SectionHeading
               eyebrow="خدمة نقابية"
@@ -44,7 +45,7 @@ export function FindDeveloperSection() {
               {findDeveloper.nameEn}
             </span>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

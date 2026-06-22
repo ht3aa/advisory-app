@@ -1,4 +1,5 @@
 import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/motion/reveal";
 import {
   Accordion,
   AccordionContent,
@@ -33,19 +34,23 @@ export function FaqSection() {
   return (
     <section id="faq" className="scroll-mt-20 py-20 lg:py-28">
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="الأسئلة الشائعة"
-          title="إجابات سريعة عن أكثر ما يُسأل"
-          align="center"
-          className="mx-auto"
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="الأسئلة الشائعة"
+            title="إجابات سريعة عن أكثر ما يُسأل"
+            align="center"
+            className="mx-auto"
+          />
+        </Reveal>
 
         <Accordion type="single" collapsible className="mt-12 w-full">
           {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`}>
-              <AccordionTrigger>{faq.q}</AccordionTrigger>
-              <AccordionContent>{faq.a}</AccordionContent>
-            </AccordionItem>
+            <Reveal key={i} delay={i * 0.06}>
+              <AccordionItem value={`item-${i}`}>
+                <AccordionTrigger>{faq.q}</AccordionTrigger>
+                <AccordionContent>{faq.a}</AccordionContent>
+              </AccordionItem>
+            </Reveal>
           ))}
         </Accordion>
       </div>

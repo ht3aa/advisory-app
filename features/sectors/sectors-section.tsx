@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/motion/reveal";
 
 const sectors: { icon: LucideIcon; title: string; body: string }[] = [
   {
@@ -47,18 +48,21 @@ export function SectorsSection() {
   return (
     <section id="sectors" className="scroll-mt-20 bg-secondary/40 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="القطاعات"
-          title="منظومة واحدة نخدمها بمهنية"
-          description="نربط الحكومة والجامعات والصناعة والشركات الناشئة ضمن منظومة تقنية وطنية متكاملة."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="القطاعات"
+            title="منظومة واحدة نخدمها بمهنية"
+            description="نربط الحكومة والجامعات والصناعة والشركات الناشئة ضمن منظومة تقنية وطنية متكاملة."
+          />
+        </Reveal>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {sectors.map((s) => {
+          {sectors.map((s, i) => {
             const Icon = s.icon;
             return (
-              <div
+              <Reveal
                 key={s.title}
+                delay={(i % 3) * 0.08}
                 className="group flex items-start gap-4 rounded-[var(--radius-ips)] border border-border bg-card p-6 transition-colors duration-150 ease-ips hover:border-ips-green/30 hover:bg-ips-green/[0.03]"
               >
                 <div className="flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-ips)] bg-ips-green/8 text-ips-green transition-colors duration-150 ease-ips group-hover:bg-ips-green group-hover:text-ips-white">
@@ -70,7 +74,7 @@ export function SectorsSection() {
                     {s.body}
                   </p>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

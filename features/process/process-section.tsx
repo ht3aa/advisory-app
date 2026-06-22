@@ -1,4 +1,5 @@
 import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/motion/reveal";
 
 const steps = [
   {
@@ -27,17 +28,19 @@ export function ProcessSection() {
   return (
     <section id="process" className="scroll-mt-20 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="منهجيتنا"
-          title="مسار عمل منضبط من التقييم حتى التسليم"
-          description="منهجية واضحة تضمن أن كل قرار تقني مبني على دليل، وأن كل مخرج قابل للقياس والتدقيق."
-          align="center"
-          className="mx-auto"
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="منهجيتنا"
+            title="مسار عمل منضبط من التقييم حتى التسليم"
+            description="منهجية واضحة تضمن أن كل قرار تقني مبني على دليل، وأن كل مخرج قابل للقياس والتدقيق."
+            align="center"
+            className="mx-auto"
+          />
+        </Reveal>
 
         <ol className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <li key={step.no} className="relative">
+            <Reveal as="li" key={step.no} delay={i * 0.1} className="relative">
               <div className="flex items-center gap-4">
                 <span className="numeral flex size-12 items-center justify-center rounded-[var(--radius-ips)] bg-ips-green text-base font-medium text-ips-white">
                   {step.no}
@@ -55,7 +58,7 @@ export function ProcessSection() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {step.body}
               </p>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </div>

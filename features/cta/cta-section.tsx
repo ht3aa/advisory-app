@@ -5,12 +5,13 @@ import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Mark } from "@/components/brand/mark";
 import { HexField } from "@/components/brand/hex-field";
+import { Reveal } from "@/components/motion/reveal";
 
 export function CtaSection() {
   return (
     <section id="contact" className="scroll-mt-20 px-5 py-20 lg:px-8 lg:py-28">
       <div className="mx-auto max-w-7xl">
-        <div className="relative isolate overflow-hidden rounded-[var(--radius-2xl)] bg-ips-green-deep px-6 py-16 text-ips-white sm:px-12 lg:px-16">
+        <Reveal className="relative isolate overflow-hidden rounded-[var(--radius-2xl)] bg-ips-green-deep px-6 py-16 text-ips-white sm:px-12 lg:px-16">
           <div className="absolute inset-0 -z-10 bg-linear-to-bl from-ips-green/40 via-ips-green-deep to-ips-ink" />
           <HexField className="-z-10" opacity={0.06} />
 
@@ -66,7 +67,7 @@ export function CtaSection() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
