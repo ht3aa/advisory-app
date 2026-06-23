@@ -1,24 +1,11 @@
-import {
-  SoftwareConsultingIcon,
-  DigitalGovernmentIcon,
-  AuditQaIcon,
-  FeasibilityIcon,
-  DataInfrastructureIcon,
-  CybersecurityIcon,
-  TendersIcon,
-  SupervisionIcon,
-  ExpertWitnessIcon,
-  TrainingIcon,
-  type ServiceIcon,
-} from "./service-icons";
-
 export type Service = {
   id: string;
   no: string;
   title: string;
   description: string;
   labelEn: string;
-  icon: ServiceIcon;
+  /** 3D render sliced from the brand icon sheet → /generated/icons/<id>.png */
+  image: string;
 };
 
 export const services: Service[] = [
@@ -29,7 +16,7 @@ export const services: Service[] = [
     description:
       "إرشاد فني مستقل في تصميم وبناء وتطوير الأنظمة والبرمجيات، من المعمارية إلى اختيار التقنيات وأفضل الممارسات الهندسية.",
     labelEn: "Software Consulting",
-    icon: SoftwareConsultingIcon,
+    image: "/generated/icons/systems-consulting.png",
   },
   {
     id: "digital-transformation",
@@ -38,7 +25,7 @@ export const services: Service[] = [
     description:
       "تصميم وتنفيذ مشاريع التحول الرقمي وأنظمة الحكومة الإلكترونية بما يرفع كفاءة الخدمات العامة ويقربها من المواطن.",
     labelEn: "Digital Government",
-    icon: DigitalGovernmentIcon,
+    image: "/generated/icons/digital-transformation.png",
   },
   {
     id: "audit-qa",
@@ -47,7 +34,7 @@ export const services: Service[] = [
     description:
       "تدقيق وفحص الأنظمة البرمجية والتأكد من جودتها وأمنها وفق معايير معتمدة، مع تقارير فنية دقيقة وقابلة للتنفيذ.",
     labelEn: "Audit & QA",
-    icon: AuditQaIcon,
+    image: "/generated/icons/audit-qa.png",
   },
   {
     id: "feasibility",
@@ -56,7 +43,7 @@ export const services: Service[] = [
     description:
       "إعداد دراسات الجدوى التقنية للمشاريع الرقمية لتقييم المخاطر والكلفة والعائد قبل الاستثمار واتخاذ القرار.",
     labelEn: "Feasibility Studies",
-    icon: FeasibilityIcon,
+    image: "/generated/icons/feasibility.png",
   },
   {
     id: "infrastructure",
@@ -65,7 +52,7 @@ export const services: Service[] = [
     description:
       "استشارات في تصميم قواعد البيانات والشبكات والبنية التحتية التقنية لضمان الأداء والموثوقية وقابلية التوسّع.",
     labelEn: "Data & Infrastructure",
-    icon: DataInfrastructureIcon,
+    image: "/generated/icons/infrastructure.png",
   },
   {
     id: "cybersecurity",
@@ -74,7 +61,7 @@ export const services: Service[] = [
     description:
       "استشارات الأمن السيبراني وحماية المعلومات، من تقييم المخاطر إلى وضع السياسات والضوابط الدفاعية للمؤسسات.",
     labelEn: "Cybersecurity",
-    icon: CybersecurityIcon,
+    image: "/generated/icons/cybersecurity.png",
   },
   {
     id: "tenders",
@@ -83,7 +70,7 @@ export const services: Service[] = [
     description:
       "إعداد المواصفات الفنية للمناقصات والعقود التقنية بصياغة محايدة ودقيقة تحمي الجهة وتضمن جودة التوريد.",
     labelEn: "Tenders & Contracts",
-    icon: TendersIcon,
+    image: "/generated/icons/tenders.png",
   },
   {
     id: "supervision",
@@ -92,7 +79,7 @@ export const services: Service[] = [
     description:
       "الإشراف الفني على تنفيذ المشاريع البرمجية ومتابعة الالتزام بالمعايير والجداول الزمنية ومخرجات الجودة.",
     labelEn: "Project Supervision",
-    icon: SupervisionIcon,
+    image: "/generated/icons/supervision.png",
   },
   {
     id: "expert-witness",
@@ -101,7 +88,7 @@ export const services: Service[] = [
     description:
       "تقديم الخبرة الفنية للمحاكم والجهات الرسمية في القضايا التقنية، بتقارير حيادية موثّقة تستند إلى الأدلة.",
     labelEn: "Expert Witness",
-    icon: ExpertWitnessIcon,
+    image: "/generated/icons/expert-witness.png",
   },
   {
     id: "training",
@@ -110,6 +97,6 @@ export const services: Service[] = [
     description:
       "التدريب وبناء القدرات المهنية للمبرمجين والشركات عبر برامج معتمدة ترفع الكفاءة وفق المعايير الوطنية.",
     labelEn: "Training & Capacity",
-    icon: TrainingIcon,
+    image: "/generated/icons/training.png",
   },
 ];

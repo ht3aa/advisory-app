@@ -1,4 +1,5 @@
-import { cn } from "@/lib/utils";
+import Image from "next/image";
+
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { services } from "./services.data";
@@ -17,7 +18,6 @@ export function ServicesSection() {
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => {
-            const Icon = service.icon;
             return (
               <Reveal
                 key={service.id}
@@ -31,14 +31,14 @@ export function ServicesSection() {
                   {service.no}
                 </span>
 
-                <div
-                  className={cn(
-                    "flex size-12 items-center justify-center rounded-[var(--radius-ips)]",
-                    "bg-ips-green/8 text-ips-green transition-colors duration-150 ease-ips",
-                    "group-hover:bg-ips-green group-hover:text-ips-white"
-                  )}
-                >
-                  <Icon className="size-6" />
+                <div className="flex size-16 items-center justify-center rounded-[var(--radius-lg)] bg-ips-white shadow-sm ring-1 ring-border transition-all duration-150 ease-ips group-hover:-translate-y-0.5 group-hover:ring-ips-green/30">
+                  <Image
+                    src={service.image}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="size-12 object-contain"
+                  />
                 </div>
 
                 <h3 className="mt-5 text-lg font-semibold leading-snug text-foreground">
