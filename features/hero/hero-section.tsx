@@ -72,7 +72,7 @@ export function HeroSection() {
             </ul>
           </div>
 
-          {/* Brand mark composition */}
+          {/* Brand mark composition — real WebGL 3D mark */}
           <div className="relative hidden lg:block">
             <div className="ips-build ips-build-2 relative mx-auto aspect-square w-full max-w-md">
               <HeroMark3D />
