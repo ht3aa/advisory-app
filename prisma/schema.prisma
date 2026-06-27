@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -54,9 +54,8 @@ model Permission {
   @@index([group])
 }
 
-// Status values: NEW | IN_REVIEW | ANSWERED | CLOSED. Stored as String because
-// SQLite has no native enum type; validated in app code via REQUEST_STATUSES
-// (features/requests/schema.ts).
+// Status values: NEW | IN_REVIEW | ANSWERED | CLOSED. Validated in app code via
+// REQUEST_STATUSES (features/requests/schema.ts).
 model ConsultantRequest {
   id           String        @id @default(cuid())
   referenceNo  String        @unique
