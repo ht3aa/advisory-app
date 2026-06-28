@@ -6,6 +6,8 @@ import {
   Tajawal,
 } from "next/font/google";
 import { AiAssistantGate } from "@/features/ai-assistant/ai-assistant";
+import { SiteJsonLd } from "@/components/seo/json-ld";
+import { createRootMetadata } from "@/lib/seo";
 import "./globals.css";
 
 // Weights: 300 captions · 400 body · 500 sub-heads · 600 headlines. Never 700+.
@@ -37,34 +39,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const siteName = "المكتب الاستشاري — نقابة المبرمجين العراقيين";
-const siteDescription =
-  "الجهة المهنية للبرمجيات في العراق. استشارات تطوير الأنظمة، التحول الرقمي والحكومة الإلكترونية، تدقيق الجودة والأمن السيبراني، الخبرة الفنية والتدريب وبناء القدرات.";
-
-export const metadata: Metadata = {
-  title: {
-    default: siteName,
-    template: `%s · ${siteName}`,
-  },
-  description: siteDescription,
-  keywords: [
-    "نقابة المبرمجين العراقيين",
-    "المكتب الاستشاري",
-    "استشارات برمجية",
-    "التحول الرقمي",
-    "الحكومة الإلكترونية",
-    "الأمن السيبراني",
-    "تدقيق الأنظمة",
-    "Iraqi Programmers Syndicate",
-  ],
-  authors: [{ name: "Advisory Office — Iraqi Programmers Syndicate" }],
-  openGraph: {
-    title: siteName,
-    description: siteDescription,
-    locale: "ar_IQ",
-    type: "website",
-  },
-};
+export const metadata: Metadata = createRootMetadata();
 
 export default function RootLayout({
   children,
@@ -78,6 +53,7 @@ export default function RootLayout({
       className={`${tajawal.variable} ${plexSans.variable} ${plexArabic.variable} ${plexMono.variable} antialiased`}
     >
       <body className="min-h-dvh bg-background font-sans text-foreground">
+        <SiteJsonLd />
         {children}
         <AiAssistantGate />
       </body>
