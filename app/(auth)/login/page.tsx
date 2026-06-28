@@ -3,13 +3,17 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { site } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 import { Mark } from "@/components/brand/mark";
 import { HexField } from "@/components/brand/hex-field";
 import { LoginForm } from "@/features/auth/login-form";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "تسجيل الدخول",
-};
+  description: "بوابة دخول موظفي المكتب الاستشاري — نقابة المبرمجين العراقيين.",
+  path: "/login",
+  noIndex: true,
+});
 
 export default async function LoginPage({
   searchParams,

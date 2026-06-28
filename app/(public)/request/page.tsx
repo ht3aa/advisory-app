@@ -3,15 +3,17 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { site } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 import { Wordmark } from "@/components/brand/logo";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SubmitForm } from "@/features/requests/submit-form";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "طلب استشارة",
   description:
-    "أرسل طلب استشارة فنية إلى المكتب الاستشاري التابع لنقابة المبرمجين العراقيين.",
-};
+    "أرسل طلب استشارة فنية إلى المكتب الاستشاري التابع لنقابة المبرمجين العراقيين — تطوير الأنظمة، التحول الرقمي، الأمن السيبراني، والتدريب.",
+  path: "/request",
+});
 
 export default async function RequestPage({
   searchParams,
