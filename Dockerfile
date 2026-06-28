@@ -36,18 +36,12 @@ WORKDIR /app
 ENV NODE_ENV=production \
     PORT=3000
 
-# Non-standalone Next needs node_modules + .next + public + config at runtime.
-# node_modules is kept intact (not pruned) so the Prisma client AND
-# `prisma migrate deploy` (run as a chart job from this image) both work.
-COPY --from=build /app/node_modules   ./node_modules
-COPY --from=build /app/.next          ./.next
-COPY --from=build /app/public         ./public
-COPY --from=build /app/package.json   ./package.json
-COPY --from=build /app/next.config.ts ./next.config.ts
-COPY --from=build /app/prisma         ./prisma
-COPY --from=build /app/prisma.config.ts ./prisma.config.ts
+# Copy the FULL app (source + node_modules + .next + public + prisma), owned by
+# node. The TS source (lib/, types/, prisma/seed.ts, ...) must be present so
+# `prisma db seed` (tsx) resolves its imports (e.g. ../lib/permissions), and node
+# ownership lets `prisma db push` regenerate the client (root-owned = EACCES).
+COPY --from=build --chown=node:node /app ./
 
-RUN chown -R node:node /app/.next
 USER node
 
 EXPOSE 3000
