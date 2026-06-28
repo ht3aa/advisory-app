@@ -1,0 +1,26 @@
+node_modules
+.next
+out
+npm-debug.log
+yarn-error.log
+# Never bake env into the image — values are injected at deploy time.
+.env
+.env.*
+.git
+.gitignore
+.github
+README.md
+**/*.md
+.DS_Store
+.vscode
+.idea
+coverage
+.nyc_output
+logs
+*.log
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile
+.dockerignore
+Makefile
+buildspec.yml
