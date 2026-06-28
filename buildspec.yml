@@ -1,0 +1,30 @@
+version: 0.2
+
+# Exports IMAGE_TAG so the pipeline's Deploy stage (cd-deployer) reads it via
+# #{BuildVariables.IMAGE_TAG} and bumps the Helm chart's image.tag.
+env:
+  exported-variables:
+    - IMAGE_TAG
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+  pre_build:
+    commands:
+      # Two ECR logins: PULL the base image from the shared DevOps registry
+      # (738222620290) and PUSH the app image to 630877783467 (Enjaz). One token
+      # covers both — cross-account pull is authorized by the base-images repo's
+      # org-wide pull policy.
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 738222620290.dkr.ecr.$AWS_REGION.amazonaws.com
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 630877783467.dkr.ecr.$AWS_REGION.amazonaws.com
+      - export COMMIT=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-7)
+      # Component-prefixed tag (cd-deployer keeps the `web` prefix, swaps the sha).
+      - export IMAGE_TAG=web-$COMMIT
+  build:
+    commands:
+      - make build GIT_SHA=$COMMIT
+  post_build:
+    commands:
+      - make push GIT_SHA=$COMMIT
+      # Deploy is handled by the pipeline's Deploy stage (cd-deployer).
